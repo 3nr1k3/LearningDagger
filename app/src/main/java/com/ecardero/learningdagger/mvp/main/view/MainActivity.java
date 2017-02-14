@@ -30,15 +30,13 @@ import butterknife.OnTextChanged;
 
 public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivityContract.View> implements MainActivityContract.View {
 
-
-
     @Inject Picasso mPicasso;
+    @Inject Activity mActivity;
 
-    @BindView(R.id.bt_main)
-    Button mMainButton;
-
-    @BindView(R.id.iv_character_thumb)
-    ImageView mCharacterThumbnail;
+    //region Butterknife declarations
+    @BindView(R.id.bt_main)             Button mMainButton;
+    @BindView(R.id.iv_character_thumb)  ImageView mCharacterThumbnail;
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +82,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
 
     @Override
     public void updateCharactersList(List<CharacterEntity> characters) {
-        Logger.d(characters.get(0).getName());
+
         mPicasso.with(this).load(characters.get(0).getThumbnail()).centerCrop().fit().into(mCharacterThumbnail);
         showMessage(characters.get(0).getThumbnail());
     }

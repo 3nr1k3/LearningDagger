@@ -35,4 +35,12 @@ public class UiModule {
                 .downloader(okHttp3Downloader)
                 .build();
     }
+
+    @Provides
+    @ApplicationScope
+    public GlideBuilder provideGlideBuilder(
+            @Named("AppContext") Context context
+    ){
+        return new GlideBuilder(context);
+    }
 }
