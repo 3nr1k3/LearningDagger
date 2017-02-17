@@ -3,18 +3,18 @@ apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
 
-def cfg                     = rootProject.ext.configuration;
-def lib                     = rootProject.ext.libraries;
+def cfg = rootProject.ext.configuration;
+def lib = rootProject.ext.libraries;
 
 android {
-    compileSdkVersion       cfg.compileVersion
-    buildToolsVersion       cfg.buildToolsVersion
+    compileSdkVersion cfg.compileVersion
+    buildToolsVersion cfg.buildToolsVersion
     defaultConfig {
-        applicationId       cfg.package
-        minSdkVersion       cfg.minSdk
-        targetSdkVersion    cfg.targetSdk
-        versionCode         cfg.version_code
-        versionName         cfg.version_name
+        applicationId cfg.package
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode cfg.version_code
+        versionName cfg.version_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -38,21 +38,25 @@ dependencies {
 
     // Butterknife
     compile "com.jakewharton:butterknife:${lib.butterknife}"
-    apt     "com.jakewharton:butterknife-compiler:${lib.butterknife}"
+    apt "com.jakewharton:butterknife-compiler:${lib.butterknife}"
 
-    // Retrofit2
+    //region Network
+    //region Retrofit2
     compile "com.squareup.retrofit2:retrofit:${lib.retrofit}"
     compile "com.squareup.retrofit2:converter-gson:${lib.retrofit}"
     //compile "com.squareup.retrofit2:adapter-rxjava2:${lib.retrofit}"
     compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${lib.retrofit_rxjava}"
+    //endregion
 
-    // okHttp3
+    //region okHttp3
     compile "com.squareup.okhttp3:okhttp:${lib.okhttp}"
     compile "com.squareup.okhttp3:logging-interceptor:${lib.logging_interceptor}"
+    //endregion
+    //endregion
 
     // Dagger
     compile "com.google.dagger:dagger:${lib.dagger}"
-    apt     "com.google.dagger:dagger-compiler:${lib.dagger}"
+    apt "com.google.dagger:dagger-compiler:${lib.dagger}"
 
     // RxJava2 + RxAndroid
     compile "io.reactivex.rxjava2:rxjava:${lib.rxjava}"
@@ -62,22 +66,39 @@ dependencies {
     compile "com.google.code.gson:gson:${lib.gson}"
     compile "com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:${lib.gson_joda}"
 
-    // UI
+    //region UI
+    //region Lottie
     compile "com.airbnb.android:lottie:${lib.lottie}"
-        // Glide
-        compile "com.github.bumptech.glide:glide:${lib.glide}"
-        compile "com.github.bumptech.glide:okhttp3-integration:${lib.glide_okhttp}"
+    //endregion
 
-        // Picasso
-        compile "com.squareup.picasso:picasso:${lib.picasso}"
-        compile "com.jakewharton.picasso:picasso2-okhttp3-downloader:${lib.picassookhttpdownloader}"
+    //region Glide
+    compile "com.github.bumptech.glide:glide:${lib.glide}"
+    compile "com.github.bumptech.glide:okhttp3-integration:${lib.glide_okhttp}"
+    //endregion
 
-    // Logging
+    //region Picasso
+    compile "com.squareup.picasso:picasso:${lib.picasso}"
+    compile "com.jakewharton.picasso:picasso2-okhttp3-downloader:${lib.picassookhttpdownloader}"
+    //endregion
+    //endregion
+
+    //region Logging
     compile "com.orhanobut:logger:${lib.logger}"
     compile "com.jakewharton.timber:timber:${lib.timber}"
+    //endregion
+
+    //region Firebase Modules
+    compile "com.google.firebase:firebase-crash:${lib.firebase}"
+    compile "com.google.firebase:firebase-core:${lib.firebase}"
+    //endregion
 
 
     compile 'com.android.support:support-v4:25.1.1'
     compile 'com.android.support:appcompat-v7:25.1.1'
+
     testCompile 'junit:junit:4.12'
+    apt 'org.projectlombok:lombok:1.12.6'
+    provided 'org.projectlombok:lombok:1.12.6'
 }
+
+apply plugin: 'com.google.gms.google-services'

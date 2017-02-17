@@ -2,13 +2,13 @@
 
 ext {
     configuration = [
-            package : 'com.ecardero.learningdagger',
+            package                 : 'com.ecardero.learningdagger',
             buildToolsVersion       : "25.0.2",
             compileVersion          : 25,
             minSdk                  : 19,
             targetSdk               : 25,
             version_code            : 1,
-            version_name            : "0.1"
+            version_name            : "1.0.1"
     ]
 
     libraries = [
@@ -37,7 +37,9 @@ ext {
             glide_okhttp            : '1.4.0@aar',
             // Logging
             timber                  : '4.5.1',
-            logger                  : '1.15'
+            logger                  : '1.15',
+            // Firebase
+            firebase                : '10.2.0'
     ]
 }
 
@@ -53,6 +55,7 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 

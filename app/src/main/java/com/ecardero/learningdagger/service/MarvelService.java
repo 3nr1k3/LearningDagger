@@ -1,12 +1,11 @@
 package com.ecardero.learningdagger.service;
 
-import com.ecardero.learningdagger.mvp.common.model.service.MarvelApiResponse;
-import com.ecardero.learningdagger.mvp.common.model.service.MarvelCharacter;
-import com.ecardero.learningdagger.mvp.common.model.service.MarvelComic;
-import com.ecardero.learningdagger.mvp.common.model.service.MarvelEvent;
+import com.ecardero.learningdagger.data.entity.service.MarvelApiResponse;
+import com.ecardero.learningdagger.data.entity.service.MarvelCharacter;
+import com.ecardero.learningdagger.data.entity.service.MarvelComic;
+import com.ecardero.learningdagger.data.entity.service.MarvelEvent;
 
 import io.reactivex.Observable;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
