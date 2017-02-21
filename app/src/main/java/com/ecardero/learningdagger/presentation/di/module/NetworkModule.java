@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
 import com.ecardero.learningdagger.helper.Md5Helper;
-import com.ecardero.learningdagger.service.MarvelService;
+import com.ecardero.learningdagger.presentation.service.MarvelService;
 import com.fatboyindustrial.gsonjodatime.DateTimeConverter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,8 +21,6 @@ import javax.inject.Named;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;

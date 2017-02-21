@@ -18,7 +18,8 @@ import dagger.Component;
                 ActivityModule.class,
         }
 )
-
 public interface ActivityComponent {
+    void inject(Activity activity);
+
     Activity activity();
 }

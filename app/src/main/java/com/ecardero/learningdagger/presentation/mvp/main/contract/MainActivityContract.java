@@ -18,6 +18,6 @@ public interface MainActivityContract {
     interface View extends BaseContract.View{
         void updateCharactersList(List<CharacterEntity> characterList);
 
-        void showMessage(String name);
+        void showMessage(String message);
     }
 }

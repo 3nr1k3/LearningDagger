@@ -39,14 +39,26 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        initializeDependencies(this);
         super.onCreate(savedInstanceState, this);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-        initializeDependencies(this);
         initializePresenter(this);
 
         FirebaseCrash.log("MainActivity created");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.onStop();
     }
 
     @Override
@@ -82,7 +94,6 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
 
     @Override
     public void updateCharactersList(List<CharacterEntity> characters) {
-
         mPicasso.load(characters.get(0).getThumbnail()).centerCrop().fit().into(mCharacterThumbnail);
         showMessage(characters.get(0).getThumbnail());
     }

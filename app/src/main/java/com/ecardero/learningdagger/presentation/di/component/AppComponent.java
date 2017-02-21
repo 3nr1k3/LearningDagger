@@ -3,15 +3,15 @@ package com.ecardero.learningdagger.presentation.di.component;
 import android.app.Activity;
 
 import com.ecardero.learningdagger.DaggerApp;
-import com.ecardero.learningdagger.domain.CharacterRepository;
 import com.ecardero.learningdagger.presentation.di.module.AppModule;
 import com.ecardero.learningdagger.presentation.di.module.DatabaseModule;
 import com.ecardero.learningdagger.presentation.di.module.FirebaseModule;
 import com.ecardero.learningdagger.presentation.di.module.NetworkModule;
 import com.ecardero.learningdagger.presentation.di.module.UiModule;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
-import com.ecardero.learningdagger.service.MarvelService;
+import com.ecardero.learningdagger.presentation.service.MarvelService;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Named;
@@ -42,7 +42,13 @@ public interface AppComponent {
 
     Picasso picasso();
 
+    //region Firebase Components
     FirebaseAnalytics firebaseAnalytics();
+    FirebaseAuth firebaseAuth();
+    FirebaseAuth.AuthStateListener firebaseAuthStateListener();
+//    FirebaseUser firebaseUser();
+    //endregion
+
     //CharacterRepository characterRepository();
 
     //region Services region

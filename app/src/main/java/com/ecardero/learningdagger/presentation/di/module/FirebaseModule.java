@@ -1,9 +1,15 @@
 package com.ecardero.learningdagger.presentation.di.module;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 
+import com.ecardero.learningdagger.constants.Constants;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 
 import javax.inject.Named;
 
@@ -48,7 +54,31 @@ public class FirebaseModule {
 
     @Provides
     @ApplicationScope
-    FirebaseAnalytics provideFirebaseAnalitycs(@Named("AppContext") Context context){
+    FirebaseAnalytics provideFirebaseAnalytics(@Named("AppContext") Context context){
         return FirebaseAnalytics.getInstance(context);
+    }
+
+    @Provides
+    @ApplicationScope
+    FirebaseAuth provideFirebaseAuth(){
+        return FirebaseAuth.getInstance();
+    }
+
+    @Provides
+    @ApplicationScope
+    FirebaseAuth.AuthStateListener provideFirebaseAuthStateListener(FirebaseAuth firebaseAuthUser, FirebaseAnalytics firebaseAnalytics){
+        return firebaseAuth -> {
+            if(firebaseAuthUser.getCurrentUser() != null){
+                Bundle b = new Bundle();
+                b.putString(Constants.CustomFirebase.Params.USER_UID, firebaseAuthUser.getCurrentUser().getUid());
+                firebaseAnalytics.logEvent(Constants.CustomFirebase.Event.USER_LOGIN, b);
+
+                FirebaseCrash.log("User logged in: " + firebaseAuthUser.getCurrentUser().getDisplayName());
+            }else{
+
+                firebaseAnalytics.logEvent(Constants.CustomFirebase.Event.USER_LOGOUT, null);
+                FirebaseCrash.log("User logged out");
+            }
+        };
     }
 }

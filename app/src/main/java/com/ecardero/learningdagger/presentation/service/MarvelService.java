@@ -1,4 +1,4 @@
-package com.ecardero.learningdagger.service;
+package com.ecardero.learningdagger.presentation.service;
 
 import com.ecardero.learningdagger.data.entity.service.MarvelApiResponse;
 import com.ecardero.learningdagger.data.entity.service.MarvelCharacter;
