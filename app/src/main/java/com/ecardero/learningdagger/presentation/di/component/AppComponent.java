@@ -10,6 +10,7 @@ import com.ecardero.learningdagger.presentation.di.module.NetworkModule;
 import com.ecardero.learningdagger.presentation.di.module.UiModule;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
 import com.ecardero.learningdagger.presentation.service.MarvelService;
+import com.ecardero.learningdagger.presentation.service.StarWarsService;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -52,7 +53,8 @@ public interface AppComponent {
     //CharacterRepository characterRepository();
 
     //region Services region
-    @Named("Marvel")            MarvelService marvelService();
+    MarvelService marvelService();
+    StarWarsService starWarsService();
     //endregion
 
     //region Threading region

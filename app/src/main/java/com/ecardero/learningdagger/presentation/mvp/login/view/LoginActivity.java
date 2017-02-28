@@ -3,8 +3,11 @@ package com.ecardero.learningdagger.presentation.mvp.login.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ecardero.learningdagger.DaggerApp;
@@ -15,6 +18,7 @@ import com.ecardero.learningdagger.presentation.mvp.common.view.BaseActivity;
 import com.ecardero.learningdagger.presentation.mvp.login.contract.LoginContract;
 import com.ecardero.learningdagger.presentation.mvp.login.presenter.LoginPresenter;
 import com.ecardero.learningdagger.presentation.mvp.main.view.MainActivity;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.crash.FirebaseCrash;
 
 import butterknife.BindView;
@@ -27,11 +31,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginContract.Vi
     @BindView(R.id.etEmail) EditText mEditEmail;
     @BindView(R.id.etPassword) EditText mEditPassword;
     @BindView(R.id.btLogin) Button mBtnLogin;
+    @BindView(R.id.pb_login_loading)ProgressBar mLoadingProgress;
     //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         initializeDependencies(this);
+
         super.onCreate(savedInstanceState, this);
         setContentView(R.layout.activity_login);
 
@@ -59,21 +65,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginContract.Vi
         super.initializePresenter(view);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mPresenter.onStart();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mPresenter.onStop();
-//    }
-
     @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoadingSpinner(boolean show) {
+        mLoadingProgress.setVisibility(show? View.VISIBLE : View.GONE);
     }
 
     @Override

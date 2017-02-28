@@ -5,11 +5,13 @@ import android.content.Context;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
 import com.ecardero.learningdagger.helper.Md5Helper;
 import com.ecardero.learningdagger.presentation.service.MarvelService;
+import com.ecardero.learningdagger.presentation.service.StarWarsService;
 import com.fatboyindustrial.gsonjodatime.DateTimeConverter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import org.joda.time.DateTime;
 
@@ -34,6 +36,7 @@ import timber.log.Timber;
 import static com.ecardero.learningdagger.constants.Constants.MarvelService.PRIVATE_API_KEY;
 import static com.ecardero.learningdagger.constants.Constants.MarvelService.PUBLIC_API_KEY;
 import static com.ecardero.learningdagger.constants.Constants.MarvelService.SERVICE_URL;
+import static com.ecardero.learningdagger.constants.Constants.MarvelService.STARWARS_SERVICE_URL;
 
 /**
  * Created by ecardero on 3/02/17.
@@ -45,13 +48,19 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
-    @Named("Marvel")
-    public MarvelService provideMarvelService(Retrofit retrofit){
+    public MarvelService provideMarvelService(@Named("MarvelRetroBuilder") Retrofit retrofit){
         return retrofit.create(MarvelService.class);
     }
 
     @Provides
     @ApplicationScope
+    public StarWarsService provideStarWarsService(@Named("SWRetroBuilder") Retrofit retrofit){
+        return retrofit.create(StarWarsService.class);
+    }
+
+    @Provides
+    @ApplicationScope
+    @Named("MarvelRetroBuilder")
     public Retrofit provideRetrofitBuilder(
             @Named("InterceptorClient") OkHttpClient okHttpClient,
             GsonConverterFactory gsonConverterFactory,
@@ -67,10 +76,36 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
+    @Named("SWRetroBuilder")
+    public Retrofit provideStarwarsRetrofitBuilder(
+            GsonConverterFactory gsonConverterFactory,
+            RxJava2CallAdapterFactory callAdapterFactory,
+            @Named("SWInterceptorClient") OkHttpClient client
+    ){
+        return new Retrofit.Builder()
+                .baseUrl(STARWARS_SERVICE_URL)
+                .addConverterFactory(gsonConverterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .client(client)
+                .build();
+    }
+
+    @Provides
+    @ApplicationScope
     @Named("InterceptorClient")
     public OkHttpClient provideOkHttpClient(Interceptor apiInterceptor, Cache cache){
         return new OkHttpClient.Builder()
                 .addInterceptor(apiInterceptor)
+                .cache(cache)
+                .build();
+    }
+
+    @Provides
+    @ApplicationScope
+    @Named("SWInterceptorClient")
+    public OkHttpClient provideOkHttpClientChuck(ChuckInterceptor chuckInterceptor, Cache cache){
+        return new OkHttpClient.Builder()
+                .addInterceptor(chuckInterceptor)
                 .cache(cache)
                 .build();
     }
@@ -153,5 +188,11 @@ public class NetworkModule {
     @ApplicationScope
     public RxJava2CallAdapterFactory provideRxJavaAdapterFactory(@Named("ExecutorThread") Scheduler scheduler){
         return RxJava2CallAdapterFactory.createWithScheduler(scheduler);
+    }
+
+    @Provides
+    @ApplicationScope
+    public ChuckInterceptor provideChuckInterceptor(@Named("AppContext") Context context){
+        return new ChuckInterceptor(context);
     }
 }

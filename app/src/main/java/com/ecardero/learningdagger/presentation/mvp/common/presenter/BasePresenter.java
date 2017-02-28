@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * JMMMMMMMMMMMMF       JM         http://www.opentrends.net
  * MMMMMMMMMMF       _JMM`         info@opentrends.net
  * MMMMMMMF`    .JMMMMF`
- * """")    _JMMMMMMF`
+ * """")    _JMMMMMMF`             Enrique Cardero
  * _MMMMMMMMMMMMMMM`      .M)      Barcelona, 08020
  * MMMMMMMMMMMMMF`     .JMM`       Spain
  * MMMMMMMMMM"     _MMMMMF

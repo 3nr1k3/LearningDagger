@@ -1,11 +1,18 @@
 package com.ecardero.learningdagger.presentation.di.module;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 
 import com.ecardero.learningdagger.constants.Constants;
+import com.ecardero.learningdagger.presentation.di.scope.ActivityScope;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -80,5 +87,13 @@ public class FirebaseModule {
                 FirebaseCrash.log("User logged out");
             }
         };
+    }
+
+    @Provides
+    @ApplicationScope
+    GoogleSignInOptions provideGoogleSignInOptions(){
+        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
     }
 }

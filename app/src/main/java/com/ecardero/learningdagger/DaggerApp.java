@@ -7,8 +7,10 @@ import com.ecardero.learningdagger.presentation.di.component.AppComponent;
 import com.ecardero.learningdagger.presentation.di.component.DaggerAppComponent;
 import com.ecardero.learningdagger.presentation.di.module.AppModule;
 import com.ecardero.learningdagger.presentation.di.module.DatabaseModule;
+import com.ecardero.learningdagger.presentation.service.StarWarsService;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
+import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
@@ -25,8 +27,9 @@ public class DaggerApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.initializeInjector();
+
         this.initializeLeakDetection();
+        this.initializeInjector();
 
         FirebaseCrash.log("Application created");
 
@@ -49,7 +52,10 @@ public class DaggerApp extends Application {
 
     private void initializeLeakDetection(){
         if(BuildConfig.DEBUG){
-            //LeakCanary.install(this);
+            if(LeakCanary.isInAnalyzerProcess(this)){
+                return;
+            }
+            LeakCanary.install(this);
         }
     }
 }

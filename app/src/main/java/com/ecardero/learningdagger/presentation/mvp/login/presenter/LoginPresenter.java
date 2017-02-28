@@ -60,6 +60,8 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
 
     public void login(Activity activity, String login, String password) {
         mView = (LoginContract.View) super.getView();
+
+        mView.showLoadingSpinner(true);
         mFirebaseAuth.signInWithEmailAndPassword(login, password)
                 .addOnCompleteListener(activity, task -> {
                     if(!task.isSuccessful()){
@@ -69,23 +71,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
                         mView.showMessage("Welcome " + task.getResult().getUser().getDisplayName());
                         mView.loginSuccessful();
                     }
+                    mView.showLoadingSpinner(false);
                 });
     }
-
-//    @Override
-//    public void onStart() {
-//        mFirebaseAuth.addAuthStateListener(mFirebaseAuthStateListener);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        if(mFirebaseAuthStateListener != null)
-//            mFirebaseAuth.removeAuthStateListener(mFirebaseAuthStateListener);
-//
-//    }
-
-//    @Override
-//    public void attachView(@NonNull LoginActivity view) {
-//        mView = view;
-//    }
 }

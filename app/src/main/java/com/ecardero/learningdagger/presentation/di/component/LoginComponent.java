@@ -1,5 +1,4 @@
 package com.ecardero.learningdagger.presentation.di.component;
-//region Copyright
 
 import com.ecardero.learningdagger.presentation.di.module.ActivityModule;
 import com.ecardero.learningdagger.presentation.di.scope.ActivityScope;
@@ -37,7 +36,6 @@ import dagger.Component;
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-//endregion
 
 @ActivityScope
 @Component(

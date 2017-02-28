@@ -48,6 +48,8 @@ public interface LoginContract {
     interface View extends BaseContract.View{
         void showMessage(String message);
 
+        void showLoadingSpinner(boolean show);
+
         void loginSuccessful();
     }
 }

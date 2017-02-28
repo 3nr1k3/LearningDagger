@@ -19,3 +19,28 @@
 
 -keepattributes Signature
 -keepattributes *Annotation*
+
+-dontwarn java.lang.invoke.*
+-dontwarn okio.*
+-dontwarn com.squareup.okhttp.**
+-dontwarn com.squareup.okhttp3.**
+
+-keep interface okhttp3.** { *; }
+-keep class okhttp3.* { *; }
+
+
+#Joda time
+-dontwarn org.joda.convert.**
+-dontwarn org.joda.time.**
+-keep class org.joda.time.** { *; }
+-keep interface org.joda.time.** { *; }
+
+#Retrofit 2
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}

@@ -1,16 +1,25 @@
 package com.ecardero.learningdagger.presentation.mvp.main.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.ecardero.learningdagger.data.entity.service.StarWarsApi.Character;
 import com.ecardero.learningdagger.presentation.mvp.common.presenter.BasePresenter;
 import com.ecardero.learningdagger.presentation.mvp.main.contract.MainActivityContract;
 import com.ecardero.learningdagger.presentation.mvp.main.view.MainActivity;
+import com.ecardero.learningdagger.presentation.service.StarWarsService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 import com.orhanobut.logger.Logger;
 
-import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import io.reactivex.Scheduler;
 import io.realm.Realm;
 
 /**
@@ -23,8 +32,14 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
 
     //region Injected in constructor properties
     @Inject Realm mRealm;
+
+    @Inject StarWarsService mStarWarsService;
+
     @Inject FirebaseAuth mFirebaseAuth;
     @Inject FirebaseAuth.AuthStateListener mFirebaseAuthStateListener;
+
+    @Inject @Named("UiThread") Scheduler mUiThread;
+    @Inject @Named("ExecutorThread") Scheduler mExecutorThread;
     //endregion
 
     FirebaseUser mFirebaseUser;
@@ -37,6 +52,16 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
 
     @Override
     public void searchCharactersByName(String name) {
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("containsName", name);
+
+        mStarWarsService.getCharacters(headerMap)
+                .observeOn(mUiThread)
+                .subscribeOn(mExecutorThread)
+                .subscribe(
+                        c -> mView.showMessage(c.get(0).getName()),
+                        FirebaseCrash::report // will throw this error if none is returned
+                );
 
         if(name.length() > 3)
             mView.showMessage(name);

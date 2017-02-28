@@ -18,9 +18,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        release {
+        debug{
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -87,6 +91,19 @@ dependencies {
     compile "com.jakewharton.timber:timber:${lib.timber}"
     //endregion
 
+    //region Debug
+    //region LeakCanary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:${lib.leakCanary}"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${lib.leakCanary}"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${lib.leakCanary}"
+    //endregion
+
+    //region Chuck
+    debugCompile "com.readystatesoftware.chuck:library:${lib.chuck}"
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:${lib.chuck}"
+    //endregion
+    //endregion
+
     //region Firebase Modules
     compile "com.google.firebase:firebase-crash:${lib.firebase}"
     compile "com.google.firebase:firebase-core:${lib.firebase}"
@@ -99,13 +116,13 @@ dependencies {
     //endregion
 
 
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
+    compile "com.android.support:support-v4:${lib.supportVersion}"
+    compile "com.android.support:appcompat-v7:${lib.supportVersion}"
 
     testCompile 'junit:junit:4.12'
     apt 'org.projectlombok:lombok:1.12.6'
     provided 'org.projectlombok:lombok:1.12.6'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
