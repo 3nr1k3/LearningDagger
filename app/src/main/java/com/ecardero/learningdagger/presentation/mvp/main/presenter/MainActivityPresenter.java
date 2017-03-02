@@ -14,6 +14,7 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -61,7 +62,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
                 .subscribe(
                         c -> {
                                 if(!c.isEmpty() && c.size() > 1)
-                                    mView.showMessage(String.format("%s +%d", c.get(0).getName(), c.size()-1));
+                                    mView.showMessage(String.format(Locale.getDefault(), "%s +%d", c.get(0).getName(), c.size()-1));
                                 else if(c.size() == 1)
                                     mView.showMessage(c.get(0).getName());
                                 else
