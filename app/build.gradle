@@ -102,6 +102,10 @@ dependencies {
     debugCompile "com.readystatesoftware.chuck:library:${lib.chuck}"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:${lib.chuck}"
     //endregion
+
+    //region Mockito
+    testCompile "org.mockito:mockito-core:${lib.mockito}"
+    //endregion
     //endregion
 
     //region Firebase Modules

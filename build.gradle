@@ -41,7 +41,9 @@ ext {
             logger                  : '1.15',
             // Firebase
             firebase                : '9.8.0',
-            google_services         : '9.8.0'
+            google_services         : '9.8.0',
+            // Testing
+            mockito                 : '1.10.19'
     ]
 }
 

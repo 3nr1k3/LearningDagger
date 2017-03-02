@@ -59,8 +59,15 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
                 .observeOn(mUiThread)
                 .subscribeOn(mExecutorThread)
                 .subscribe(
-                        c -> mView.showMessage(c.get(0).getName()),
-                        FirebaseCrash::report // will throw this error if none is returned
+                        c -> {
+                                if(!c.isEmpty() && c.size() > 1)
+                                    mView.showMessage(String.format("%s +%d", c.get(0).getName(), c.size()-1));
+                                else if(c.size() == 1)
+                                    mView.showMessage(c.get(0).getName());
+                                else
+                                    mView.showMessage("None found");
+                            },
+                        FirebaseCrash::report // will throw this error into Firebase if none is returned
                 );
 
         if(name.length() > 3)
