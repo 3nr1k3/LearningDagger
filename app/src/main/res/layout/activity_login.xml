@@ -6,119 +6,134 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_light"
-            android:id="@+id/imageView2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btLogin_login"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/btRegister"
+        app:layout_constraintTop_toTopOf="@+id/btRegister"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="8dp" />
 
-        <EditText
+    <Button
+        android:id="@+id/btRegister"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btRegister_register"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/swRemember" />
+
+    <EditText
             android:layout_height="wrap_content"
             android:id="@+id/etEmail"
             android:layout_width="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-            android:layout_marginEnd="16dp"
+        android:layout_marginEnd="16dp"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:hint="@string/email"
-            android:layout_marginTop="16dp"
-            android:inputType="textEmailAddress"
-            app:layout_constraintHorizontal_bias="0.25"
-            android:text="ecardero@opentrends.net"
-            />
+        android:inputType="textEmailAddress"
+        android:text="ecardero@opentrends.net"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvEmail"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="80dp"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/tvEmail"
+        app:layout_constraintLeft_toLeftOf="@+id/etEmail"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/etPassword"
-            app:layout_constraintTop_toBottomOf="@+id/tvPassword"
             android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
             android:hint="@string/password"
-            android:layout_marginTop="16dp"
-            android:text="test12"/>
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvPassword"
-            app:layout_constraintTop_toBottomOf="@+id/etEmail"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="16dp"
+            android:text="test12"
+            android:layout_marginLeft="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:id="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
-        <Button
-            android:text="Login"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btLogin"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintHorizontal_bias="0.81"
-            android:layout_marginStart="16dp" />
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/tvPassword"
+        app:layout_constraintLeft_toLeftOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
-        android:layout_height="511dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="329dp"
         android:id="@+id/guideline"
-        app:layout_constraintGuide_begin="329dp" />
+        app:layout_constraintGuide_percent="0.63611114"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="229dp" />
 
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleSmall"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/pb_login_loading"
-        android:background="@color/whiteTransparent"
+    <Switch
+        android:id="@+id/swRemember"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="20dp"
+        android:autoText="false"
+        android:checked="false"
+        android:text="@string/switch_login_remember"
+        android:textAlignment="viewEnd"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/etPassword"
+        app:layout_constraintRight_toRightOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <FrameLayout
+        android:id="@+id/flLoading"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/pb_login_loading"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/whiteTransparent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.696" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/ic_fingerprint_black_24dp"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="375dp" />
 
 
 </android.support.constraint.ConstraintLayout>

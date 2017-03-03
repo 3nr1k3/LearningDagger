@@ -11,6 +11,8 @@ public class Character {
     private UUID id;
     private String name;
     private String side;
+    private String imageUrl;
+    private int imageResource;
     private List<Character> charactersKilled;
 
     public void setId(UUID id) {
@@ -37,6 +39,13 @@ public class Character {
         this.charactersKilled.add(character);
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setImageResource(int imageResource) {
+        this.imageResource = imageResource;
+    }
 
     public UUID getId() {
         return id;
@@ -52,5 +61,13 @@ public class Character {
 
     public List<Character> getCharactersKilled() {
         return charactersKilled;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public int getImageResource() {
+        return imageResource;
     }
 }

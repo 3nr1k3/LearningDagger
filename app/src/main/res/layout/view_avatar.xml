@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatarview_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="0dp"
+        app:srcCompat="@color/chuck_colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/tv_avatarview_initials"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+</merge>

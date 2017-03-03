@@ -2,4 +2,9 @@
     <string name="app_name">LearningDagger</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="btLogin_login">Login</string>
+    <string name="btRegister_register">Register</string>
+    <string name="tvPassword">Password</string>
+    <string name="tvEmail">Email</string>
+    <string name="switch_login_remember">Remember me</string>
 </resources>

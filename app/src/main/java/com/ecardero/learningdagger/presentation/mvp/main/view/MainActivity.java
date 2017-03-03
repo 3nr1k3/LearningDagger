@@ -1,5 +1,6 @@
 package com.ecardero.learningdagger.presentation.mvp.main.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,7 +10,9 @@ import android.widget.Toast;
 
 import com.ecardero.learningdagger.DaggerApp;
 import com.ecardero.learningdagger.R;
+import com.ecardero.learningdagger.data.entity.User;
 import com.ecardero.learningdagger.data.entity.database.CharacterEntity;
+import com.ecardero.learningdagger.presentation.Layout.AvatarView;
 import com.ecardero.learningdagger.presentation.di.component.DaggerCharacterComponent;
 import com.ecardero.learningdagger.presentation.di.module.ActivityModule;
 import com.ecardero.learningdagger.presentation.mvp.common.view.BaseActivity;
@@ -37,7 +40,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
     @BindView(R.id.iv_character_thumb)  ImageView mCharacterThumbnail;
     //endregion
 
+
     @Override
+    @SuppressLint("MissingSuperCall")
     protected void onCreate(Bundle savedInstanceState) {
         initializeDependencies(this);
         super.onCreate(savedInstanceState, this);

@@ -3,10 +3,12 @@ package com.ecardero.learningdagger.presentation.mvp.login.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.BinderThread;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -31,7 +33,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginContract.Vi
     @BindView(R.id.etEmail) EditText mEditEmail;
     @BindView(R.id.etPassword) EditText mEditPassword;
     @BindView(R.id.btLogin) Button mBtnLogin;
-    @BindView(R.id.pb_login_loading)ProgressBar mLoadingProgress;
+    @BindView(R.id.pb_login_loading) ProgressBar mLoadingProgress;
+    @BindView(R.id.flLoading) FrameLayout mLoadingFrame;
     //endregion
 
     @Override
@@ -72,17 +75,22 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginContract.Vi
 
     @Override
     public void showLoadingSpinner(boolean show) {
-        mLoadingProgress.setVisibility(show? View.VISIBLE : View.GONE);
+        if(show)
+            mLoadingFrame.bringToFront();
+
+        mLoadingFrame.setVisibility(show? View.VISIBLE : View.GONE);
     }
 
     @Override
     public void loginSuccessful() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
+        finish();
     }
 
     @OnClick(R.id.btLogin)
     protected void loginClick(){
         mPresenter.login(this, mEditEmail.getText().toString(), mEditPassword.getText().toString());
     }
+
 }

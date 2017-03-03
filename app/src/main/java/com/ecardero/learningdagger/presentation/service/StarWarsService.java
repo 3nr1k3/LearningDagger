@@ -5,6 +5,7 @@ import com.ecardero.learningdagger.data.entity.service.StarWarsApi.Character;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -20,6 +21,6 @@ public interface StarWarsService {
 
     @GET("api/characters/{characterId}")
     Observable<Character> getCharacterById(
-            @Path("characterId") int characterId
+            @Path("characterId") UUID characterId
     );
 }
