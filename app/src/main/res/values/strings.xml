@@ -7,4 +7,6 @@
     <string name="tvPassword">Password</string>
     <string name="tvEmail">Email</string>
     <string name="switch_login_remember">Remember me</string>
+    <string name="character_name">Character\'s name</string>
+    <string name="character_side">Character\'s Side</string>
 </resources>

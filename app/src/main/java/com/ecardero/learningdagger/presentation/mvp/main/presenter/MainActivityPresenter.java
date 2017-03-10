@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.ecardero.learningdagger.data.entity.service.StarWarsApi.Character;
 import com.ecardero.learningdagger.presentation.mvp.common.presenter.BasePresenter;
+import com.ecardero.learningdagger.presentation.mvp.main.adapter.CharacterAdapter;
 import com.ecardero.learningdagger.presentation.mvp.main.contract.MainActivityContract;
 import com.ecardero.learningdagger.presentation.mvp.main.view.MainActivity;
 import com.ecardero.learningdagger.presentation.service.StarWarsService;
@@ -61,10 +62,9 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
                 .subscribeOn(mExecutorThread)
                 .subscribe(
                         c -> {
-                                if(!c.isEmpty() && c.size() > 1)
-                                    mView.showMessage(String.format(Locale.getDefault(), "%s +%d", c.get(0).getName(), c.size()-1));
-                                else if(c.size() == 1)
-                                    mView.showMessage(c.get(0).getName());
+                                if(!c.isEmpty()) {
+                                    mView.updateCharactersList(c);
+                                }
                                 else
                                     mView.showMessage("None found");
                             },

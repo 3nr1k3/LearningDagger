@@ -127,11 +127,11 @@ dependencies {
     compile "com.android.support:design:${lib.supportVersion}"
     compile "com.android.support:support-v4:${lib.supportVersion}"
     compile "com.android.support:appcompat-v7:${lib.supportVersion}"
-    compile "com.android.support.constraint:constraint-layout:${lib.constraint}"
 
     testCompile 'junit:junit:4.12'
     apt 'org.projectlombok:lombok:1.12.6'
     provided 'org.projectlombok:lombok:1.12.6'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

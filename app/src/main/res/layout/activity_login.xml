@@ -82,9 +82,9 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:id="@+id/guideline"
-        app:layout_constraintGuide_percent="0.63611114"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="229dp" />
+        tools:layout_editor_absoluteX="229dp"
+        app:layout_constraintGuide_begin="229dp" />
 
 
     <Switch
@@ -129,11 +129,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="80dp"
         app:srcCompat="@drawable/ic_fingerprint_black_24dp"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="375dp" />
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="379dp" />
 
 
 </android.support.constraint.ConstraintLayout>

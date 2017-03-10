@@ -1,8 +1,11 @@
 package com.ecardero.learningdagger.presentation.di.module;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.ecardero.learningdagger.presentation.di.scope.ActivityScope;
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,5 +26,12 @@ public class ActivityModule {
     @ActivityScope
     public Activity activity(){
         return this.activity;
+    }
+
+    @Provides
+    @ActivityScope
+    @Named("ActivityContext")
+    public Context provideActivityContext(){
+        return activity;
     }
 }

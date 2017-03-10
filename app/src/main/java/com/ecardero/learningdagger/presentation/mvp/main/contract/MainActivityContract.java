@@ -1,5 +1,6 @@
 package com.ecardero.learningdagger.presentation.mvp.main.contract;
 
+import com.ecardero.learningdagger.data.entity.service.StarWarsApi.Character;
 import com.ecardero.learningdagger.presentation.mvp.common.contract.BaseContract;
 import com.ecardero.learningdagger.data.entity.database.CharacterEntity;
 
@@ -16,7 +17,8 @@ public interface MainActivityContract {
     }
 
     interface View extends BaseContract.View{
-        void updateCharactersList(List<CharacterEntity> characterList);
+        void initializeAdapter();
+        void updateCharactersList(List<Character> characterList);
 
         void showMessage(String message);
     }

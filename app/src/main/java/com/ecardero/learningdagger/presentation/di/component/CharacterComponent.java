@@ -1,11 +1,10 @@
 package com.ecardero.learningdagger.presentation.di.component;
 
-import com.ecardero.learningdagger.data.entity.database.CharacterEntity;
 import com.ecardero.learningdagger.presentation.di.module.ActivityModule;
+import com.ecardero.learningdagger.presentation.di.module.CharacterModule;
 import com.ecardero.learningdagger.presentation.di.scope.ActivityScope;
+import com.ecardero.learningdagger.presentation.mvp.main.adapter.CharacterAdapter;
 import com.ecardero.learningdagger.presentation.mvp.main.view.MainActivity;
-
-import java.util.List;
 
 import dagger.Component;
 
@@ -16,9 +15,12 @@ import dagger.Component;
 @Component(
         dependencies = AppComponent.class,
         modules = {
+                CharacterModule.class,
                 ActivityModule.class
         }
 )
 public interface CharacterComponent extends ActivityComponent{
     void inject(MainActivity mainActivity);
+
+    CharacterAdapter adapter();
 }
