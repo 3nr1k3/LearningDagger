@@ -11,7 +11,7 @@ public class Character {
     private UUID id;
     private String name;
     private String side;
-    private String imageUrl;
+    private Image avatar;
     private int imageResource;
     private List<Character> charactersKilled;
 
@@ -27,6 +27,10 @@ public class Character {
         this.side = side;
     }
 
+    public void setAvatar(Image avatar) {
+        this.avatar = avatar;
+    }
+
     public void setCharactersKilled(List<Character> charactersKilled) {
         Preconditions.checkNotNull(charactersKilled);
         this.charactersKilled = charactersKilled;
@@ -39,9 +43,9 @@ public class Character {
         this.charactersKilled.add(character);
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
@@ -59,13 +63,17 @@ public class Character {
         return side;
     }
 
+    public Image getAvatar() {
+        return avatar;
+    }
+
     public List<Character> getCharactersKilled() {
         return charactersKilled;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+//    public String getImageUrl() {
+//        return imageUrl;
+//    }
 
     public int getImageResource() {
         return imageResource;

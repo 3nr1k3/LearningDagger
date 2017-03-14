@@ -109,7 +109,6 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
     public void updateCharactersList(List<Character> characters) {
         mAdapter.updateCharacters(characters);
         mAdapter.notifyDataSetChanged();
-        showMessage(characters.get(0).getName());
     }
 
     @Override

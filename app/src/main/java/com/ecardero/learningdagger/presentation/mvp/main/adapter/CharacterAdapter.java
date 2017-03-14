@@ -25,14 +25,18 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
 
     private final CharacterAdapterCallback mClickCallback;
 
-    @Inject Picasso mPicasso;
+    Picasso mPicasso;
     private Context mContext;
 
     private List<Character> mCharacters = new ArrayList<>();
 
     @Inject
-    public CharacterAdapter(@Named("ActivityContext") Context context){
+    public CharacterAdapter(
+            @Named("ActivityContext") Context context,
+            Picasso picasso
+    ){
         mContext = context;
+        mPicasso = picasso;
         mClickCallback = (CharacterAdapterCallback) context;
     }
 
@@ -45,10 +49,8 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(     mCharacters.get(position).getImageUrl() != null
-                && !mCharacters.get(position).getImageUrl().isEmpty()
-                &&  mCharacters.get(position).getImageUrl() != "")
-            mPicasso.load(mCharacters.get(position).getImageUrl()).centerCrop().fit().into(holder.mAvatar);
+        if(mCharacters.get(position).getAvatar() != null )
+            mPicasso.load(mCharacters.get(position).getAvatar().getUrl()).centerCrop().fit().into(holder.mAvatar);
 
         holder.mName.setText(mCharacters.get(position).getName());
         holder.mSide.setText(mCharacters.get(position).getSide());

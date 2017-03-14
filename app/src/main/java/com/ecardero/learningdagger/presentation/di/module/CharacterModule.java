@@ -6,6 +6,7 @@ import com.ecardero.learningdagger.data.entity.database.CharacterEntity;
 import com.ecardero.learningdagger.presentation.di.scope.ActivityScope;
 import com.ecardero.learningdagger.presentation.mvp.main.adapter.CharacterAdapter;
 import com.ecardero.learningdagger.presentation.mvp.main.adapter.CharacterAdapterCallback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,10 @@ public class CharacterModule {
 
     @Provides
     @ActivityScope
-    CharacterAdapter provideCharacterAdapter(@Named("ActivityContext") Context context ){
-        return new CharacterAdapter(context);
+    CharacterAdapter provideCharacterAdapter(
+            @Named("ActivityContext") Context context,
+            Picasso picasso
+    ){
+        return new CharacterAdapter(context, picasso);
     }
 }

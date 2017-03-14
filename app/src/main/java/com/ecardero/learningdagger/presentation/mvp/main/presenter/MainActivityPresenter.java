@@ -57,7 +57,8 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("containsName", name);
 
-        mStarWarsService.getCharacters(headerMap)
+        if(name.length() > 3)
+            mStarWarsService.getCharacters(headerMap)
                 .observeOn(mUiThread)
                 .subscribeOn(mExecutorThread)
                 .subscribe(
@@ -71,8 +72,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
                         FirebaseCrash::report // will throw this error into Firebase if none is returned
                 );
 
-        if(name.length() > 3)
-            mView.showMessage(name);
+
     }
 
     @Override
