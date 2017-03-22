@@ -13,6 +13,7 @@ import com.ecardero.learningdagger.presentation.service.MarvelService;
 import com.ecardero.learningdagger.presentation.service.StarWarsService;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Named;
@@ -61,5 +62,7 @@ public interface AppComponent {
     @Named("UiThread")          Scheduler uiThread();
     @Named("ExecutorThread")    Scheduler executorThread();
     //endregion
+
+    @Named("LoggingGson")       Gson gson();
 
 }

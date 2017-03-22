@@ -1,30 +1,23 @@
 package com.ecardero.learningdagger.presentation.di.module;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 
 import com.ecardero.learningdagger.constants.Constants;
-import com.ecardero.learningdagger.presentation.di.scope.ActivityScope;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 
 import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
 
-//region Copyright
-/*
+/**
  * _MMMMM`
  * __MMMMMMMMM`       J        openTrends Solucions i Sistemes, S.L.
  * JMMMMMMMMMMMMF       JM         http://www.opentrends.net
@@ -54,14 +47,15 @@ import dagger.Provides;
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-//endregion
 
 @Module(includes = AppModule.class)
 public class FirebaseModule {
 
     @Provides
     @ApplicationScope
-    FirebaseAnalytics provideFirebaseAnalytics(@Named("AppContext") Context context){
+    FirebaseAnalytics provideFirebaseAnalytics(
+            @Named("AppContext") Context context
+    ){
         return FirebaseAnalytics.getInstance(context);
     }
 
@@ -73,14 +67,17 @@ public class FirebaseModule {
 
     @Provides
     @ApplicationScope
-    FirebaseAuth.AuthStateListener provideFirebaseAuthStateListener(FirebaseAuth firebaseAuthUser, FirebaseAnalytics firebaseAnalytics){
+    FirebaseAuth.AuthStateListener provideFirebaseAuthStateListener(
+            FirebaseAuth firebaseAuthUser,
+            FirebaseAnalytics firebaseAnalytics
+    ){
         return firebaseAuth -> {
             if(firebaseAuthUser.getCurrentUser() != null){
                 Bundle b = new Bundle();
                 b.putString(Constants.CustomFirebase.Params.USER_UID, firebaseAuthUser.getCurrentUser().getUid());
                 firebaseAnalytics.logEvent(Constants.CustomFirebase.Event.USER_LOGIN, b);
 
-                FirebaseCrash.log("User logged in: " + firebaseAuthUser.getCurrentUser().getDisplayName());
+                FirebaseCrash.log("User logged in: " + firebaseAuthUser.getCurrentUser().getEmail());
             }else{
 
                 firebaseAnalytics.logEvent(Constants.CustomFirebase.Event.USER_LOGOUT, null);

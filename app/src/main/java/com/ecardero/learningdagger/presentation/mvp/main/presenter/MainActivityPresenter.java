@@ -12,6 +12,7 @@ import com.ecardero.learningdagger.presentation.service.StarWarsService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
@@ -42,6 +43,8 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
 
     @Inject @Named("UiThread") Scheduler mUiThread;
     @Inject @Named("ExecutorThread") Scheduler mExecutorThread;
+
+    @Inject @Named("LoggingGson") Gson mGson;
     //endregion
 
     FirebaseUser mFirebaseUser;
@@ -64,6 +67,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivity> implement
                 .subscribe(
                         c -> {
                                 if(!c.isEmpty()) {
+                                    Logger.json(mGson.toJson(c));
                                     mView.updateCharactersList(c);
                                 }
                                 else

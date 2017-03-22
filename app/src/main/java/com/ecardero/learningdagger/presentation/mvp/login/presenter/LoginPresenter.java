@@ -1,19 +1,12 @@
 package com.ecardero.learningdagger.presentation.mvp.login.presenter;
-//region Copyright
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 
 import com.ecardero.learningdagger.presentation.mvp.common.presenter.BasePresenter;
 import com.ecardero.learningdagger.presentation.mvp.login.contract.LoginContract;
 import com.ecardero.learningdagger.presentation.mvp.login.view.LoginActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.crash.FirebaseCrash;
-
-import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
@@ -47,7 +40,7 @@ import javax.inject.Inject;
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-//endregion
+
 public class LoginPresenter extends BasePresenter<LoginActivity> implements LoginContract.Presenter<LoginActivity> {
     private LoginContract.View mView;
 
@@ -68,7 +61,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
                         FirebaseCrash.log("Authentication failed.");
                         mView.showMessage("Authentication failed");
                     }else{
-                        mView.showMessage("Welcome " + task.getResult().getUser().getDisplayName());
+                        mView.showMessage("Welcome " + task.getResult().getUser().getEmail());
                         mView.loginSuccessful();
                     }
                     mView.showLoadingSpinner(false);

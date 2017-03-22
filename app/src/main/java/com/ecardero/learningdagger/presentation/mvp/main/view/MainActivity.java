@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.ecardero.learningdagger.DaggerApp;
 import com.ecardero.learningdagger.R;
-import com.ecardero.learningdagger.data.entity.database.CharacterEntity;
 import com.ecardero.learningdagger.data.entity.service.StarWarsApi.Character;
 import com.ecardero.learningdagger.presentation.di.component.DaggerCharacterComponent;
 import com.ecardero.learningdagger.presentation.di.module.ActivityModule;
@@ -21,12 +20,14 @@ import com.ecardero.learningdagger.presentation.mvp.main.adapter.CharacterAdapte
 import com.ecardero.learningdagger.presentation.mvp.main.contract.MainActivityContract;
 import com.ecardero.learningdagger.presentation.mvp.main.presenter.MainActivityPresenter;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,8 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
     @Inject Activity mActivity;
 
     @Inject CharacterAdapter mAdapter;
+
+    @Inject @Named("LoggingGson") Gson mGson;
     
     //region Butterknife declarations
     @BindView(R.id.et_characters_name) EditText mCharacterName;
@@ -118,6 +121,6 @@ public class MainActivity extends BaseActivity<MainActivityPresenter, MainActivi
 
     @Override
     public void onClickCharacter(Character item) {
-        Logger.d(item);
+        Logger.json(mGson.toJson(item));
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.ecardero.learningdagger.DaggerApp;
 import com.ecardero.learningdagger.domain.CharacterRepository;
 import com.ecardero.learningdagger.presentation.di.scope.ApplicationScope;
+import com.google.gson.Gson;
 
 import javax.inject.Named;
 
@@ -51,4 +52,9 @@ public class AppModule {
     public Scheduler provideScheduler(){
         return Schedulers.newThread();
     }
+
+    @Provides
+    @ApplicationScope
+    @Named("LoggingGson")
+    public Gson provideGson(){ return new Gson(); }
 }
