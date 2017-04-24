@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'realm-android'
-apply plugin: 'me.tatarka.retrolambda'
 
-def cfg = rootProject.ext.configuration;
-def lib = rootProject.ext.libraries;
+def cfg = rootProject.ext.configuration
+def lib = rootProject.ext.libraries
 
 android {
     compileSdkVersion cfg.compileVersion
@@ -27,7 +25,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -42,7 +39,7 @@ dependencies {
 
     // Butterknife
     compile "com.jakewharton:butterknife:${lib.butterknife}"
-    apt "com.jakewharton:butterknife-compiler:${lib.butterknife}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${lib.butterknife}"
 
     //region Network
     //region Retrofit2
@@ -60,7 +57,7 @@ dependencies {
 
     // Dagger
     compile "com.google.dagger:dagger:${lib.dagger}"
-    apt "com.google.dagger:dagger-compiler:${lib.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${lib.dagger}"
 
     // RxJava2 + RxAndroid
     compile "io.reactivex.rxjava2:rxjava:${lib.rxjava}"
@@ -129,8 +126,6 @@ dependencies {
     compile "com.android.support:appcompat-v7:${lib.supportVersion}"
 
     testCompile 'junit:junit:4.12'
-    apt 'org.projectlombok:lombok:1.12.6'
-    provided 'org.projectlombok:lombok:1.12.6'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 

@@ -1,5 +1,6 @@
 package com.ecardero.learningdagger.presentation.mvp.login.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginContract.Vi
     //endregion
 
     @Override
+    @SuppressLint("MissingSuperCall")
     protected void onCreate(Bundle savedInstanceState) {
         initializeDependencies(this);
 
